@@ -42,7 +42,8 @@ def generate_launch_description():
             'filters': LaunchConfiguration('filters'),
             'use_bus_time': LaunchConfiguration('use_bus_time'),
         }],
-        remappings=[('from_can_bus', LaunchConfiguration('from_can_bus_topic'))],
+        remappings=[('from_can_bus', LaunchConfiguration('from_can_bus_topic')),
+        	('from_can_bus_fd', LaunchConfiguration('from_can_bus_fd_topic'))],
         output='screen')
 
     socket_can_receiver_configure_event_handler = RegisterEventHandler(
@@ -108,6 +109,7 @@ def generate_launch_description():
         DeclareLaunchArgument('auto_configure', default_value='true'),
         DeclareLaunchArgument('auto_activate', default_value='true'),
         DeclareLaunchArgument('from_can_bus_topic', default_value='from_can_bus'),
+        DeclareLaunchArgument('from_can_bus_fd_topic', default_value='from_can_bus_fd'),
         socket_can_receiver_node,
         socket_can_receiver_configure_event_handler,
         socket_can_receiver_activate_event_handler,
